@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3783bac929334b3eac2b0e9e69617817"}'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUST Computer Based Entry Test (CBNET)</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+
+    <script src="questions.js"></script>
+    <style>
+        /* ----- General Styling ----- */
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
+        body{background:#fff;user-select:none;}
+        .login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:url('nust.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;}
+        .login-container{width:100%;max-width:520px;background:rgba(255,255,255,.95);padding:35px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.3);}
+        .status-badge{display:flex;align-items:center;justify-content:center;gap:6px;background:#E8F8F5;color:#117A65;font-size:11px;font-weight:bold;padding:6px 14px;border-radius:20px;width:fit-content;margin:0 auto 18px auto;border:1px solid #A3E4D7;}
+        .pulse-dot{width:8px;height:8px;background:#27AE60;border-radius:50%;animation:pulse 1.8s infinite;}
+        @keyframes pulse{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(39,174,96,.7)}70%{transform:scale(1);box-shadow:0 0 0 6px rgba(39,174,96,0)}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(39,174,96,0)}}
+        .login-header{color:#003399;font-size:22px;font-weight:800;text-align:center;letter-spacing:-.5px;}
+        .nust-logo-sub{font-size:13px;color:#FF0000;font-weight:700;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;}
+        .form-group{margin-bottom:16px;}
+        .form-group label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+        .form-group input{width:100%;padding:12px 14px;border:2px solid #D5DBDB;border-radius:8px;font-size:15px;outline:none;transition:all .2s;color:#333;background:#FAFAFA;}
+        .form-group input:focus{background:#FFF;border-color:#0055A5;box-shadow:0 0 0 4px rgba(0,85,165,.15);}
+        .password-wrapper{position:relative;display:flex;align-items:center;width:100%;}
+        .toggle-password-btn{position:absolute;right:10px;background:#E5E7E9;border:none;font-size:11px;font-weight:700;padding:5px 9px;cursor:pointer;color:#444;border-radius:4px;text-transform:uppercase;}
+        .toggle-password-btn:hover{background:#BDC3C7;}
+        .login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#0055A5,#003399);color:white;border:none;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;margin-top:10px;transition:.2s;box-shadow:0 4px 12px rgba(0,51,153,.3);}
+        .login-btn:hover{background:linear-gradient(135deg,#003399,#002266);transform:scale(1.01);}
+        .instructions-box{width:100%;max-width:520px;margin-top:20px;border:1px solid rgba(255,255,255,.2;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border-radius:12px;padding:15px;font-size:12px;color:#E5E7E9;line-height:1.6;}
+        .field-select-screen{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:url('nust.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;}
+        .field-select-container{width:100%;max-width:520px;background:rgba(255,255,255,.95);padding:35px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.3);}
+        .field-card{display:flex;align-items:flex-start;gap:14px;border:2px solid #D5DBDB;border-radius:10px;padding:12px 16px;cursor:pointer;transition:.2s;background:#FAFAFA;}
+        .field-card:hover{border-color:#0055A5;background:#EBF5FB;}
+        .field-card.selected{border-color:#0055A5;background:#D4E6F1;box-shadow:0 0 0 3px rgba(0,85,165,.2);}
+        .field-card input[type="radio"]{transform:scale(1.3);accent-color:#0055A5;margin-top:4px;}
+        .field-card-content{flex:1;}
+        .field-card-title{font-weight:700;font-size:13px;color:#003399;}
+        .field-card-detail{font-size:11px;color:#555;margin-top:2px;}
+        .field-card-weightage{font-size:10px;color:#777;margin-top:3px;background:#EFF6FF;padding:2px 8px;border-radius:3px;display:inline-block;}
+        .field-card-code{font-size:10px;font-weight:bold;color:#0055A5;background:#E8F0FE;padding:3px 8px;border-radius:4px;}
+        .btn-back{width:100%;padding:10px;margin-top:8px;background:transparent;color:#999;border:1px solid #ccc;border-radius:8px;font-size:13px;cursor:pointer;}
+        .btn-back:hover{color:#0055A5;border-color:#0055A5;}
+        .exam-interface{display:none;padding:10px;}
+        .test-table{width:100%;border-collapse:collapse;border:3px double #0055A5;margin-bottom:8px;}
+        .top-header-row{background:#FFF;border-bottom:2px solid #0055A5;color:#008000;font-weight:bold;padding:6px 10px;font-size:14px;text-transform:uppercase;}
+        .stream-title{background:#F9F9F9;border-bottom:2px solid #0055A5;padding:5px;text-align:center;color:#FF0000;font-weight:bold;font-size:13px;}
+        .workspace-container{display:flex;border-bottom:2px solid #0055A5;min-height:300px;}
+        .left-main-canvas{flex:1;display:flex;flex-direction:column;border-right:2px solid #0055A5;}
+        .question-meta-bar{background:#D4E6F1;color:#003399;font-weight:bold;font-size:13px;padding:5px 10px;border-bottom:1px solid #0055A5;display:flex;justify-content:space-between;}
+        .question-body-pane{padding:18px 20px;font-size:15px;font-weight:600;color:#000;min-height:100px;border-bottom:2px solid #0055A5;line-height:1.6;background:#FFF;text-align:left;}
+        .options-pane-title{background:#D4E6F1;color:#003399;font-weight:bold;font-size:13px;padding:5px 10px;border-bottom:1px solid #0055A5;}
+        .options-list-wrapper{padding:12px 15px;display:flex;flex-direction:column;gap:6px;background:#FFF;flex:1;}
+        .option-row-item{display:flex;align-items:center;border:1px solid #A9CCE3;padding:10px 14px;background:white;cursor:pointer;border-radius:4px;}
+        .option-row-item:hover{background:#EBF5FB;border-color:#2980B9;}
+        .option-row-item.selected{background:#D4E6F1;border:1px solid #0055A5;font-weight:bold;}
+        .option-radio-input{margin-right:12px;transform:scale(1.2);cursor:pointer;flex-shrink:0;}
+        .option-text{text-align:left;font-size:14px;}
+        .right-photo-panel{width:160px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#FFF;}
+        .photo-box-frame{width:120px;height:140px;border:1px solid #003399;background:#FAFAFA;margin-bottom:12px;text-align:center;font-weight:bold;font-size:13px;color:#555;}
+        .bottom-action-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;background:#FFF;flex-wrap:wrap;}
+        .timer-dashboard{display:flex;border:1px solid #008000;background:#FFF;height:48px;align-items:center;}
+        .timer-left-banner{background:#008000;color:#FFF;font-size:10px;padding:5px 8px;height:100%;display:flex;flex-direction:column;justify-content:center;font-weight:bold;text-align:center;text-transform:uppercase;}
+        .timer-countdown-clock{font-size:22px;font-weight:bold;color:#008000;padding:0 10px;font-family:monospace;min-width:120px;text-align:center;}
+        .finish-trigger-link{color:#003399;font-weight:bold;text-decoration:underline;cursor:pointer;font-size:12px;}
+        .finish-trigger-link:hover{color:#FF0000;}
+        .button-bar-right{display:flex;gap:3px;align-items:center;flex-wrap:wrap;}
+        .retro-control-btn{padding:5px 10px;font-size:11px;font-weight:bold;color:white;border:1px solid #2471A3;cursor:pointer;border-radius:3px;white-space:nowrap;}
+        .btn-system{background:linear-gradient(to bottom,#3498DB,#2980B9);}
+        .btn-navigational{background:linear-gradient(to bottom,#5DADE2,#2874A6);}
+        .btn-review{background:linear-gradient(to bottom,#F39C12,#D35400);border-color:#B03A2E;}
+        .btn-system:hover,.btn-navigational:hover,.btn-review:hover{opacity:.9;}
+        .modal-screen{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:9999;}
+        .modal-body{background:white;border:3px double #0055A5;padding:25px;text-align:center;max-width:680px;width:95%;max-height:90vh;overflow-y:auto;}
+        .score-output{font-size:38px;font-weight:bold;color:#008000;margin:15px 0;font-family:monospace;}
+        .review-box{border:1px solid #BDC3C7;text-align:left;padding:12px;margin-top:8px;font-size:13px;background:#FFF9F9;border-left:5px solid #FF0000;}
+        .review-box.box-correct{background:#F4FBF7;border-left:5px solid #2ECC71;}
+        .review-header{background:#003399;color:white;text-align:left;padding:6px 10px;font-size:14px;font-weight:bold;margin-top:15px;text-transform:uppercase;}
+        .review-box p{margin:4px 0;}
+        .review-box span{display:block;}
+        .review-box strong{color:#333;}
+        .review-box .box-correct p{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct strong{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+        .review-box .box-correct span{color:#2ECC71;}
+    </style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-screen" id="loginScreenView">
+    <div class="login-container">
+        <div class="status-badge"><div class="pulse-dot"></div><span>SYSTEM STATUS: OPERATIONAL</span></div>
+        <div class="login-header">National University of Sciences &amp; Technology</div>
+        <div class="nust-logo-sub">Computer Based Entry Test Portal (CBNET)</div>
+        <div class="form-group">
+            <label>Candidate Roll Number / ID</label>
+            <input type="text" id="candidateIdInput" placeholder="e.g., NUST-786-ICS">
+        </div>
+        <div class="form-group">
+            <label>Access Password</label>
+            <div class="password-wrapper">
+                <input type="password" id="candidatePassInput" placeholder="Enter password">
+                <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility()">Show</button>
+            </div>
+        </div>
+        <button class="login-btn" onclick="authenticateUserLogin()">Login</button>
+    </div>
+    <div class="instructions-box">
+        <b style="color:#FFD700;font-size:13px;">Important System Instructions:</b><br>
+        &bull; Total Test duration is exactly 180 minutes (200 MCQs).<br>
+        &bull; After login, select your field/stream to begin the test.<br>
+        &bull; Click <b>Save</b> after choosing an option to record your choice and advance.
+    </div>
+</div>
+
+<!-- ===== FIELD SELECTION SCREEN (hidden by default) ===== -->
+<div class="field-select-screen" id="fieldSelectScreenView">
+    <div class="field-select-container">
+        <div class="status-badge"><div class="pulse-dot"></div><span>CANDIDATE: <span id="fieldSelectCandidateId">NUST026</span></span></div>
+        <div class="login-header">Select Your Test Field / Stream</div>
+        <div class="nust-logo-sub" style="margin-bottom:15px;">Choose the appropriate category for assessment</div>
+        <div class="field-selector" id="fieldSelectorContainer">
+            <!-- Only Business field card remains -->
+            <div class="field-card" onclick="selectField(this,'business_studies')">
+                <input type="radio" name="fieldChoice" value="business_studies">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Business Studies &amp; Social Sciences</div>
+                    <div class="field-card-detail">Business / Social Sciences Stream</div>
+                    <div class="field-card-weightage">Quantitative Mathematics 50% &middot; English 50%</div>
+                </div>
+                <div class="field-card-code">BUS</div>
+            </div>
+        </div>
+        <button class="login-btn" onclick="startExam()">Start Assessment</button>
+        <button class="btn-back" onclick="goBackToLogin()">&larr; Back to Login</button>
+    </div>
+</div>
+
+<!-- ===== EXAM INTERFACE ===== -->
+<div class="exam-interface" id="examPortalView">
+    <div class="test-table">
+        <div class="top-header-row" id="currentSubjectHeader">MATHEMATICS</div>
+        <div class="stream-title" id="streamTitleBar">Business Stream Mock Portal</div>
+        <div class="workspace-container">
+            <div class="left-main-canvas">
+                <div class="question-meta-bar">
+                    <span id="questionNumTracker">Question No: 1 of 100</span>
+                    <span>Marks: 1</span>
+                </div>
+                <div class="question-body-pane" id="questionTextBox">Loading question...</div>
+                <div class="options-pane-title">Answer (Please select your correct option)</div>
+                <div class="options-list-wrapper" id="optionsRadioGroup"></div>
+            </div>
+            <div class="right-photo-panel">
+                <div class="photo-box-frame">Your<br>Image<br>here</div>
+                <div style="font-size:11px;font-weight:bold;color:#0055A5;text-align:center;line-height:1.5;">
+                    Candidate ID:<br><span style="color:#FF0000" id="displayCandidateId">NUST026</span><br>
+                    <span id="displayFieldCode" style="color:#003399;font-size:10px;">BUS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigation-grid-wrapper" id="navButtonMatrixGrid"></div>
+    <div class="bottom-action-row">
+        <div class="timer-dashboard">
+            <div class="timer-left-banner">Remaining<br>Time</div>
+            <div class="timer-countdown-clock" id="timerClockMinutes">03:00:00</div>
+        </div>
+        <div><span class="finish-trigger-link" onclick="triggerSubmitConfirmation()">Click here to <b>FINISH</b> Test</span></div>
+        <div class="button-bar-right" id="sectionButtonsContainer">
+            <button class="retro-control-btn btn-system" onclick="saveAnswerState()">Save</button>
+            <button class="retro-control-btn btn-navigational" onclick="shiftActiveIndex(1)">Next &gt;</button>
+            <button class="retro-control-btn btn-navigational" onclick="shiftActiveIndex(-1)">&lt; Prev</button>
+            <button class="retro-control-btn btn-review" onclick="flagQuestionToggle()">Review</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== RESULT MODAL ===== -->
+<div class="modal-screen" id="reportCardModalOverlay">
+    <div class="modal-body">
+        <h2 style="color:#0055A5;font-size:20px;">NUST Examination Result Summary</h2>
+        <p style="margin-top:8px;font-size:13px;color:#555;">Scoring: +1 correct, 0 incorrect (no negative marking).</p>
+        <div class="score-output" id="totalScoreTarget">0 / 200</div>
+        <div id="subjectScoreBreakdownBox" style="text-align:left;background:#F8F9F9;padding:12px;font-size:13px;line-height:1.6;border:1px solid #BDC3C7;margin-bottom:15px;"></div>
+        <button class="login-btn" style="margin:0 auto 20px auto;display:block;width:150px;background:linear-gradient(135deg,#C0392B,#E74C3C);box-shadow:0 4px 12px rgba(192,57,43,.3);" onclick="window.location.reload()">Exit Portal</button>
+        <div id="wrongQuestionsReviewPanel" style="text-align:left;margin-bottom:20px;"></div>
+        <button class="login-btn" style="margin:0 auto;display:block;width:150px;" onclick="window.location.reload()">Restart Portal</button>
+    </div>
+</div>
+
+<script>
+const FIELD_CONFIG = {
+    'business_studies': {
+        label: 'NET-Business Studies & Social Sciences',
+        code: 'BUS',
+        description: 'Business / Social Sciences Stream',
+        totalMCQs: 200,
+        blueprint: { quantitative_mathematics: 100, english: 100 },
+        bankKeys: { quantitative_mathematics: 'quantitative_mathematics', english: 'english' }
+    }
+};
+
+const SECTION_LABELS = {
+    quantitative_mathematics: 'QUANTITATIVE MATHEMATICS',
+    english: 'ENGLISH'
+};
+
+let candidateId = '', selectedField = null, activeTestSessionPool = [], globalPointerIndex = 0;
+let totalSecondsRemaining = 180 * 60, trackingIntervalEngine = null;
+
+// ---------------- UI Helpers ----------------
+function togglePasswordVisibility() {
+    const p = document.getElementById('candidatePassInput');
+    const b = p.nextElementSibling;
+    if (p.type === 'password') { p.type = 'text'; b.innerText = 'Hide'; }
+    else { p.type = 'password'; b.innerText = 'Show'; }
+}
+
+function authenticateUserLogin() {
+    candidateId = document.getElementById('candidateIdInput').value.trim();
+    const pass = document.getElementById('candidatePassInput').value.trim();
+    if (!candidateId || !pass) { alert('Both Roll Number and Password are required.'); return; }
+    if (pass !== 'nust2027') { alert('Access Denied: Invalid Access Password.'); return; }
+    document.getElementById('fieldSelectCandidateId').innerText = candidateId;
+    document.getElementById('loginScreenView').style.display = 'none';
+    document.getElementById('fieldSelectScreenView').style.display = 'flex';
+}
+
+function goBackToLogin() {
+    document.getElementById('fieldSelectScreenView').style.display = 'none';
+    document.getElementById('loginScreenView').style.display = 'flex';
+}
+
+function selectField(el, val) {
+    document.querySelectorAll('.field-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.field-card input').forEach(r => r.checked = false);
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+    selectedField = val;
+}
+
+// ---------------- Exam Engine ----------------
+function startExam() {
+    if (!selectedField) { alert('Please select your Field / Stream.'); return; }
+    const cfg = FIELD_CONFIG[selectedField];
+    if (typeof QUESTION_BANK === 'undefined') { alert('questions.js missing or corrupted.'); return; }
+    if (!QUESTION_BANK[selectedField]) { alert('No question data for this field in questions.js'); return; }
+
+    document.getElementById('displayCandidateId').innerText = candidateId;
+    document.getElementById('displayFieldCode').innerText = cfg.code;
+    document.getElementById('streamTitleBar').innerText = cfg.description + ' Mock Portal';
+    document.getElementById('fieldSelectScreenView').style.display = 'none';
+    document.getElementById('examPortalView').style.display = 'block';
+
+    buildSectionButtons();
+    launchTestEngine();
+}
+
+function buildSectionButtons() {
+    const container = document.getElementById('sectionButtonsContainer');
+    const reviewBtn = container.querySelector('.btn-review');
+    let html = '';
+    const cfg = FIELD_CONFIG[selectedField];
+    for (const sec of Object.keys(cfg.blueprint)) {
+        const lbl = (SECTION_LABELS[sec] || sec).substring(0, 4);
+        html += `<button class="retro-control-btn btn-subject" onclick="switchSubjectCluster('${sec}')">${lbl}</button>`;
+    }
+    reviewBtn.insertAdjacentHTML('afterend', html);
+}
+
+function pullRandomPool(src, limit) {
+    if (!src || !src.length) return [];
+    let c = [...src].sort(() => 0.5 - Math.random());
+    while (c.length < limit) c = c.concat(c);
+    return c.slice(0, limit).map(i => ({ ...i, chosenIndexValue: null, isFlagged: false, isSavedPermanently: false }));
+}
+
+function launchTestEngine() {
+    activeTestSessionPool = [];
+    const cfg = FIELD_CONFIG[selectedField];
+    const fieldData = QUESTION_BANK[selectedField];
+    const bpOrder = Object.keys(cfg.blueprint);
+
+    for (const sec of bpOrder) {
+        const bankKey = cfg.bankKeys[sec];
+        if (fieldData[bankKey]) {
+            const qs = pullRandomPool(fieldData[bankKey], cfg.blueprint[sec]);
+            let cnt = 1;
+            qs.forEach(i => { i.innerIndexValue = cnt++; i.sectionKeyName = sec; });
+            activeTestSessionPool = activeTestSessionPool.concat(qs);
+        }
+    }
+
+    activeTestSessionPool.sort((a, b) => {
+        const oa = bpOrder.indexOf(a.sectionKeyName), ob = bpOrder.indexOf(b.sectionKey
