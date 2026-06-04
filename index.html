@@ -61,15 +61,21 @@
     background-attachment: fixed;
 }
         @keyframes gradientBG { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-        .login-container, .field-select-container {
-    /* Medium transparency: 0.75 alpha */
-    background: rgba(255, 255, 255, 0.75); 
-
-    /* Frosted glass effect */
+        .login-container {
+    background: rgba(255, 255, 255, 0.6); /* 0.6 is more transparent */
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 520px;
+    padding: 35px;
+}
 
-    /* Modern styling */
+/* Instructions/Field Container: Less transparent (more opaque) */
+.field-select-container {
+    background: rgba(255, 255, 255, 0.9); /* 0.9 is more opaque */
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
