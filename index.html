@@ -23,7 +23,7 @@
     align-items:center; 
     justify-content:center; 
     min-height:100vh; 
-    background-image: url('nust.jpg'); /* Ensure nust.jpg is in the same directory as index.html */
+    background-image: url('nust.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -151,8 +151,8 @@
 <div class="login-screen" id="loginScreenView">
     <div class="login-container">
         <div class="status-badge"><div class="pulse-dot"></div><span>SYSTEM STATUS: OPERATIONAL</span></div>
-        <div class="login-header">National University of Sciences & Technology</div>
-        <div class="nust-logo-sub">Computer Based Entry Test Portal (CBNET)</div>
+        <div class="login-header"> NUST Computer Based Entry Test</div>
+        <div class="nust-logo-sub">For Business and Social Sciences</div>
         <div class="form-group">
             <label>Candidate Roll Number / ID</label>
             <input type="text" id="candidateIdInput" placeholder="e.g., NUST-786-ICS">
@@ -166,70 +166,67 @@
         </div>
         <button class="login-btn" onclick="authenticateUserLogin()">Login</button>
     </div>
-    <div class="instructions-box">
-        <b style="color:#FFD700;font-size:13px;">Important System Instructions:</b><br>
-        &bull; Total Test duration is exactly 180 minutes (200 MCQs).<br>
-        &bull; After login, select your field/stream to begin the test.<br>
-        &bull; Click <b>Save</b> after choosing an option to record your choice and advance.
-    </div>
+    
 </div>
 
 <!-- ===== FIELD SELECTION SCREEN (hidden by default) ===== -->
-<div class="field-select-screen" id="fieldSelectScreenView">
+<div class="field-select-screen" id="instructionScreenView">
+
     <div class="field-select-container">
-        <div class="status-badge"><div class="pulse-dot"></div><span>CANDIDATE: <span id="fieldSelectCandidateId">NUST026</span></span></div>
-        <div class="login-header">Select Your Test Field / Stream</div>
-        <div class="nust-logo-sub" style="margin-bottom:15px;">Choose the appropriate category for assessment</div>
-        <div class="field-selector" id="fieldSelectorContainer">
-            <div class="field-card" onclick="selectField(this,'engineering')">
-                <input type="radio" name="fieldChoice" value="engineering">
-                <div class="field-card-content">
-                    <div class="field-card-title">NET-Engineering</div>
-                    <div class="field-card-detail">HSSC Pre-Engg / Pre-Med* / ICS / equivalent</div>
-                    <div class="field-card-weightage">Mathematics 50% &middot; Physics 30% &middot; English 20%</div>
-                </div>
-                <div class="field-card-code">ENG</div>
-            </div>
-            <div class="field-card" onclick="selectField(this,'applied_sciences')">
-                <input type="radio" name="fieldChoice" value="applied_sciences">
-                <div class="field-card-content">
-                    <div class="field-card-title">NET-Applied Sciences</div>
-                    <div class="field-card-detail">HSSC Pre-Medical group / equivalent</div>
-                    <div class="field-card-weightage">Biology 50% &middot; Chemistry 30% &middot; English 20%</div>
-                </div>
-                <div class="field-card-code">APS</div>
-            </div>
-            <div class="field-card" onclick="selectField(this,'business_studies')">
-                <input type="radio" name="fieldChoice" value="business_studies">
-                <div class="field-card-content">
-                    <div class="field-card-title">NET-Business Studies &amp; Social Sciences</div>
-                    <div class="field-card-detail">HSSC with any combination / equivalent</div>
-                    <div class="field-card-weightage">Quantitative Mathematics 50% &middot; English 50%</div>
-                </div>
-                <div class="field-card-code">BUS</div>
-            </div>
-            <div class="field-card" onclick="selectField(this,'architecture')">
-                <input type="radio" name="fieldChoice" value="architecture">
-                <div class="field-card-content">
-                    <div class="field-card-title">NET-Architecture / Industrial Design</div>
-                    <div class="field-card-detail">HSSC with Maths and Physics / equivalent</div>
-                    <div class="field-card-weightage">Design Aptitude 50% &middot; Mathematics 30% &middot; English 20%</div>
-                </div>
-                <div class="field-card-code">ARC</div>
-            </div>
-            <div class="field-card" onclick="selectField(this,'natural_sciences')">
-                <input type="radio" name="fieldChoice" value="natural_sciences">
-                <div class="field-card-content">
-                    <div class="field-card-title">NET-Natural Sciences</div>
-                    <div class="field-card-detail">HSSC / equivalent</div>
-                    <div class="field-card-weightage">Mathematics 50% &middot; English 50%</div>
-                </div>
-                <div class="field-card-code">NSC</div>
-            </div>
+
+        <div class="login-header">
+            NET Business & Social Sciences
         </div>
-        <button class="login-btn" onclick="startExam()">Start Assessment</button>
-        <button class="btn-back" onclick="goBackToLogin()">&larr; Back to Login</button>
+
+        <div class="nust-logo-sub">
+            Candidate Instructions
+        </div>
+
+        <div style="
+            text-align:left;
+            line-height:1.8;
+            font-size:14px;
+            max-height:500px;
+            overflow-y:auto;
+            padding:20px;
+            border:1px solid #ddd;
+            border-radius:10px;
+            background:#fafafa;
+        ">
+
+            <b>IMPORTANT INSTRUCTIONS</b><br><br>
+
+            • Total Questions: 200<br>
+            • Total Time: 180 Minutes<br>
+            • No Negative Marking.<br>
+            • Each question carries equal marks.<br>
+            • Quantitative Mathematics and English sections are included.<br>
+            • Select the correct option and click Save.<br>
+            • You may navigate between questions freely.<br>
+            • Questions can be marked for review.<br>
+            • Answers can be changed before final submission.<br>
+            • Remaining time is displayed throughout the test.<br>
+            • The test will automatically submit when time expires.<br>
+            • Click FINISH TEST only when you are ready to submit.<br>
+            • Review all questions before submission.<br>
+
+            <br>
+
+            <b>TEST STRUCTURE</b>
+
+            <ul>
+                <li>Quantitative Mathematics</li>
+                <li>English</li>
+            </ul>
+
+        </div>
+
+        <button class="login-btn" onclick="startExam()">
+            Start Test
+        </button>
+
     </div>
+
 </div>
 
 <!-- ===== EXAM INTERFACE ===== -->
@@ -289,42 +286,29 @@
 
 <script>
 const FIELD_CONFIG = {
-    'engineering': {
-        label: 'NET-Engineering', code: 'ENG', description: 'Engineering / Computing / ICS Stream', totalMCQs: 200,
-        blueprint: { mathematics: 100, physics: 60, english: 40 },
-        bankKeys: { mathematics: 'mathematics', physics: 'physics', english: 'english' }
-    },
-    'applied_sciences': {
-        label: 'NET-Applied Sciences', code: 'APS', description: 'Pre-Medical / Applied Biosciences Stream', totalMCQs: 200,
-        blueprint: { biology: 100, chemistry: 60, english: 40 },
-        bankKeys: { biology: 'biology', chemistry: 'chemistry', english: 'english' }
-    },
-    'business_studies': {
-        label: 'NET-Business Studies & Social Sciences', code: 'BUS', description: 'Business / Social Sciences Stream', totalMCQs: 200,
-        blueprint: { quantitative_mathematics: 100, english: 100 },
-        bankKeys: { quantitative_mathematics: 'quantitative_mathematics', english: 'english' }
-    },
-    'architecture': {
-        label: 'NET-Architecture', code: 'ARC', description: 'Architecture / Industrial Design Stream', totalMCQs: 200,
-        blueprint: { design_aptitude: 100, mathematics: 60, english: 40 },
-        bankKeys: { design_aptitude: 'design_aptitude', mathematics: 'mathematics', english: 'english' }
-    },
-    'natural_sciences': {
-        label: 'NET-Natural Sciences', code: 'NSC', description: 'Natural Sciences Stream', totalMCQs: 200,
-        blueprint: { mathematics: 100, english: 100 },
-        bankKeys: { mathematics: 'mathematics', english: 'english' }
+    business_studies: {
+        label: 'NET Business & Social Sciences',
+        code: 'BUS',
+        description: 'Business & Social Sciences',
+        totalMCQs: 200,
+        blueprint: {
+            quantitative_mathematics: 100,
+            english: 100
+        },
+        bankKeys: {
+            quantitative_mathematics: 'quantitative_mathematics',
+            english: 'english'
+        }
     }
 };
 
-const SECTION_LABELS = {
-    mathematics: 'MATHEMATICS', physics: 'PHYSICS', english: 'ENGLISH',
-    biology: 'BIOLOGY', chemistry: 'CHEMISTRY',
-    quantitative_mathematics: 'QUANTITATIVE MATHEMATICS',
-    design_aptitude: 'DESIGN APTITUDE'
-};
 
-let candidateId = '', selectedField = null, activeTestSessionPool = [], globalPointerIndex = 0;
-let totalSecondsRemaining = 180 * 60, trackingIntervalEngine = null;
+let candidateId = '',
+    selectedField = 'business_studies',
+    activeTestSessionPool = [],
+    globalPointerIndex = 0;
+let totalSecondsRemaining = 180 * 60, 
+    trackingIntervalEngine = null;
 
 function togglePasswordVisibility() {
     const p = document.getElementById('candidatePassInput');
@@ -336,25 +320,21 @@ function togglePasswordVisibility() {
 function authenticateUserLogin() {
     candidateId = document.getElementById('candidateIdInput').value.trim();
     const pass = document.getElementById('candidatePassInput').value.trim();
-    if (!candidateId || !pass) { alert('Both Roll Number and Password are required.'); return; }
-    if (pass !== 'NUST2026') { alert('Access Denied: Invalid Access Password.'); return; }
-    document.getElementById('fieldSelectCandidateId').innerText = candidateId;
+
+    if (!candidateId || !pass) {
+        alert('Both Roll Number and Password are required.');
+        return;
+    }
+
+    if (pass !== 'NUST2026') {
+        alert('Access Denied: Invalid Access Password.');
+        return;
+    }
+
     document.getElementById('loginScreenView').style.display = 'none';
-    document.getElementById('fieldSelectScreenView').style.display = 'flex';
+    document.getElementById('instructionScreenView').style.display = 'flex';
 }
 
-function goBackToLogin() {
-    document.getElementById('fieldSelectScreenView').style.display = 'none';
-    document.getElementById('loginScreenView').style.display = 'flex';
-}
-
-function selectField(el, val) {
-    document.querySelectorAll('.field-card').forEach(c => c.classList.remove('selected'));
-    document.querySelectorAll('.field-card input').forEach(r => r.checked = false);
-    el.classList.add('selected');
-    el.querySelector('input').checked = true;
-    selectedField = val;
-}
 
 function wrapMathEnvironments(text) {
     const envs = [
@@ -438,7 +418,6 @@ function buildSectionButtons() {
     const container = document.getElementById('sectionButtonsContainer');
     const reviewBtn = container.querySelector('.btn-review');
     let html = '';
-    const cfg = FIELD_CONFIG[selectedField];
     for (const sec of Object.keys(cfg.blueprint)) {
         const lbl = (SECTION_LABELS[sec] || sec).substring(0, 4);
         html += `<button class="retro-control-btn btn-subject" onclick="switchSubjectCluster('${sec}')">${lbl}</button>`;
