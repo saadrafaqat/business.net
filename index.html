@@ -1,42 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3783bac929334b3eac2b0e9e69617817"}'></script>
 <head>
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="icon" href="icon.png" type="image/png">
     <meta charset="UTF-8">
-    <title>NUST Computer Based Entry Test For Business and Social Sciences</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUST Computer Based Entry Test (CBNET)</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
     <script src="questions.js"></script>
     <style>
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;}
-        body{background:#fff;color:#333;}
-        .login-screen,.instructions-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:url('nust.jpg') no-repeat center/cover;}
-        .login-container,.instructions-container{width:100%;max-width:520px;background:rgba(255,255,255,0.95);padding:35px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.3);}
-        .login-header{color:#003399;font-size:22px;font-weight:800;text-align:center;margin-bottom:10px;}
-        .nust-logo-sub{font-size:13px;color:#FF0000;font-weight:700;margin-bottom:20px;text-transform:uppercase;}
-        .form-group{margin-bottom:16px;}
-        .form-group label{display:block;font-size:12px;font-weight:700;color:#444;margin-bottom:6px;text-transform:uppercase;}
-        .form-group input{width:100%;padding:12px 14px;border:2px solid #D5DBDB;border-radius:8px;font-size:15px;background:#FAFAFA;}
-        .form-group input:focus{background:#FFF;border-color:#0055A5;box-shadow:0 0 0 4px rgba(0,85,165,0.15);}
-        .toggle-password-btn{background:#E5E7E9;border:none;font-size:11px;font-weight:700;padding:5px 9px;cursor:pointer;color:#444;border-radius:4px;text-transform:uppercase;}
-        .toggle-password-btn:hover{background:#BDC3C7;}
-        .login-btn{width:100%;padding:14px;background:linear-gradient(135deg,#0055A5,#003399);color:white;border:none;border-radius:8px;font-weight:700;font-size:15px;cursor:pointer;transition:all .2s;}
-        .login-btn:hover{background:linear-gradient(135deg,#003399,#002266);transform:scale(1.01);}
-        .instructions-text{margin-bottom:30px;font-size:14px;line-height:1.6;color:#555;}
-        .status-badge{display:flex;align-items:center;gap:6px;background:#E8F8F5;color:#117A65;font-size:11px;font-weight:bold;padding:6px 14px;border-radius:20px;width:fit-content;margin:0 auto 18px auto;border:1px solid #A3E4D7;}
-        .pulse-dot{width:8px;height:8px;background:#27AE60;border-radius:50%;animation:pulse 1.8s infinite;}
-        @keyframes pulse{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(39,174,96,.7)}70%{transform:scale(1);box-shadow:0 0 0 6px rgba(39,174,96,0)}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(39,174,96,0)}}
-        /* Test interface styles remain unchanged – copy from original */
-        .exam-interface{display:none;padding:10px;}
-        /* ... (rest of the original CSS for the exam interface) ... */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #FFFFFF; user-select: none; }
+.login-screen { 
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center; 
+    min-height:100vh; 
+    background-image: url('nust.jpg'); /* Ensure nust.jpg is in the same directory as index.html */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+.field-select-screen { 
+    display:none; 
+    flex-direction:column; 
+    align-items:center; 
+    justify-content:center; 
+    min-height:100vh; 
+    background-image: url('nust.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    /* Remove the old background property if it's still there */
+}
+        @keyframes gradientBG { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        .login-container, .field-select-container { width:100%; max-width:520px; background:rgba(255,255,255,0.95); padding:35px; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
+        .login-header { color:#003399; font-size:22px; font-weight:800; text-align:center; letter-spacing:-0.5px; }
+        .nust-logo-sub { text-align:center; font-size:13px; color:#FF0000; font-weight:700; margin-bottom:20px; text-transform:uppercase; letter-spacing:1px; }
+        .status-badge { display:flex; align-items:center; justify-content:center; gap:6px; background:#E8F8F5; color:#117A65; font-size:11px; font-weight:bold; padding:6px 14px; border-radius:20px; width:fit-content; margin:0 auto 18px auto; border:1px solid #A3E4D7; }
+        .pulse-dot { width:8px; height:8px; background-color:#27AE60; border-radius:50%; animation:pulse 1.8s infinite; }
+        @keyframes pulse { 0%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(39,174,96,0.7)} 70%{transform:scale(1);box-shadow:0 0 0 6px rgba(39,174,96,0)} 100%{transform:scale(0.95);box-shadow:0 0 0 0 rgba(39,174,96,0)} }
+        .form-group { margin-bottom:16px; }
+        .form-group label { display:block; font-size:12px; font-weight:700; color:#444; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+        .form-group input { width:100%; padding:12px 14px; border:2px solid #D5DBDB; border-radius:8px; font-size:15px; outline:none; transition:all 0.2s; color:#333; background:#FAFAFA; }
+        .form-group input:focus { background:#FFF; border-color:#0055A5; box-shadow:0 0 0 4px rgba(0,85,165,0.15); }
+        .password-wrapper { position:relative; display:flex; align-items:center; width:100%; }
+        .password-wrapper input { padding-right:65px; }
+        .toggle-password-btn { position:absolute; right:10px; background:#E5E7E9; border:none; font-size:11px; font-weight:700; padding:5px 9px; cursor:pointer; color:#444; border-radius:4px; text-transform:uppercase; }
+        .toggle-password-btn:hover { background:#BDC3C7; }
+        .login-btn { width:100%; padding:14px; background:linear-gradient(135deg,#0055A5,#003399); color:white; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer; margin-top:10px; transition:all 0.2s; box-shadow:0 4px 12px rgba(0,51,153,0.3); }
+        .login-btn:hover { background:linear-gradient(135deg,#003399,#002266); transform:scale(1.01); }
+        .instructions-box { width:100%; max-width:520px; margin-top:20px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); backdrop-filter:blur(8px); border-radius:12px; padding:15px; font-size:12px; color:#E5E7E9; line-height:1.6; }
+        .field-selector { display:flex; flex-direction:column; gap:8px; margin-bottom:10px; }
+        .field-card { display:flex; align-items:flex-start; gap:14px; border:2px solid #D5DBDB; border-radius:10px; padding:12px 16px; cursor:pointer; transition:all 0.2s; background:#FAFAFA; }
+        .field-card:hover { border-color:#0055A5; background:#EBF5FB; }
+        .field-card.selected { border-color:#0055A5; background:#D4E6F1; box-shadow:0 0 0 3px rgba(0,85,165,0.2); }
+        .field-card input[type="radio"] { transform:scale(1.3); accent-color:#0055A5; flex-shrink:0; margin-top:4px; }
+        .field-card-content { flex:1; }
+        .field-card-title { font-weight:700; font-size:13px; color:#003399; }
+        .field-card-detail { font-size:11px; color:#555; margin-top:2px; }
+        .field-card-weightage { font-size:10px; color:#777; margin-top:3px; background:#EFF6FF; padding:2px 8px; border-radius:3px; display:inline-block; }
+        .field-card-code { font-size:10px; font-weight:bold; color:#0055A5; background:#E8F0FE; padding:3px 8px; border-radius:4px; flex-shrink:0; }
+        .btn-back { width:100%; padding:10px; margin-top:8px; background:transparent; color:#999; border:1px solid #ccc; border-radius:8px; font-size:13px; cursor:pointer; }
+        .btn-back:hover { color:#0055A5; border-color:#0055A5; }
+        .exam-interface { display:none; padding:10px; }
+        .test-table { width:100%; border-collapse:collapse; border:3px double #0055A5; margin-bottom:8px; }
+        .top-header-row { background:#FFF; border-bottom:2px solid #0055A5; color:#008000; font-weight:bold; padding:6px 10px; font-size:14px; text-transform:uppercase; }
+        .stream-title { text-align:center; color:#FF0000; font-weight:bold; font-size:13px; border-bottom:2px solid #0055A5; padding:5px; background:#F9F9F9; }
+        .workspace-container { display:flex; border-bottom:2px solid #0055A5; min-height:300px; }
+        .left-main-canvas { flex:1; display:flex; flex-direction:column; border-right:2px solid #0055A5; }
+        .question-meta-bar { background:#D4E6F1; color:#003399; font-weight:bold; font-size:13px; padding:5px 10px; border-bottom:1px solid #0055A5; display:flex; justify-content:space-between; }
+        .question-body-pane { padding:18px 20px; font-size:15px; font-weight:600; color:#000; min-height:100px; border-bottom:2px solid #0055A5; line-height:1.6; background:#FFF; text-align:left; }
+        .passage-container { background:#F8F9FA; border:1px solid #BDC3C7; border-left:4px solid #0055A5; padding:14px 16px; margin-bottom:14px; font-weight:400; font-size:14px; line-height:1.7; color:#333; border-radius:4px; }
+        .passage-label { font-size:11px; font-weight:700; color:#0055A5; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+        .question-text { font-weight:600; font-size:15px; }
+        .question-diagram { display:block; max-width:280px; height:auto; margin:12px auto; border-radius:6px; border:1px solid #D5DBDB; }
+        .options-pane-title { background:#D4E6F1; color:#003399; font-weight:bold; font-size:13px; padding:5px 10px; border-bottom:1px solid #0055A5; }
+        .options-list-wrapper { padding:12px 15px; display:flex; flex-direction:column; gap:6px; background:#FFF; flex:1; }
+        .option-row-item { display:flex; align-items:center; border:1px solid #A9CCE3; padding:10px 14px; background:white; cursor:pointer; border-radius:4px; }
+        .option-row-item:hover { background:#EBF5FB; border-color:#2980B9; }
+        .option-row-item.selected { background:#D4E6F1; border:1px solid #0055A5; font-weight:bold; }
+        .option-radio-input { margin-right:12px; transform:scale(1.2); cursor:pointer; flex-shrink:0; }
+        .option-text { text-align:left; font-size:14px; }
+        .option-text .katex { font-size:1.05em; }
+        .option-text .katex-display { display:inline-block; }
+        .right-photo-panel { width:160px; padding:12px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; background:#FFF; }
+        .photo-box-frame { width:120px; height:140px; border:1px solid #003399; display:flex; align-items:center; justify-content:center; text-align:center; font-weight:bold; font-size:13px; color:#555; background:#FAFAFA; margin-bottom:12px; }
+        .navigation-grid-wrapper { border:1px solid #0055A5; margin:8px 0; padding:8px; background:#F2F4F4; }
+        .nav-section-label { display:flex; align-items:center; gap:8px; margin:4px 0 6px 0; }
+        .nav-section-label span { font-size:10px; font-weight:bold; color:#003399; background:#D4E6F1; padding:2px 10px; border-radius:3px; text-transform:uppercase; }
+        .nav-sub-grid { display:grid; gap:3px; margin-bottom:8px; }
+        .nav-square-btn { background:#E5E7E9; border:1px solid #7F8C8D; text-align:center; font-size:10px; padding:4px 0; cursor:pointer; font-weight:bold; color:#000; border-radius:2px; }
+        .nav-square-btn.active-focus { border:2px solid #FF0000; background:#FFF; color:#FF0000; }
+        .nav-square-btn.filled { background:#2ECC71; color:white; border-color:#27AE60; }
+        .nav-square-btn.flagged-review { background:#F1C40F; color:black; border-color:#D4AC0D; }
+        .bottom-action-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; background:#FFF; flex-wrap:wrap; gap:6px; }
+        .timer-dashboard { display:flex; border:1px solid #008000; background:#FFF; height:48px; align-items:center; flex-shrink:0; }
+        .timer-left-banner { background:#008000; color:#FFF; font-size:10px; padding:5px 8px; height:100%; display:flex; flex-direction:column; justify-content:center; font-weight:bold; text-align:center; text-transform:uppercase; }
+        .timer-countdown-clock { font-size:22px; font-weight:bold; color:#008000; padding:0 10px; font-family:monospace; min-width:120px; text-align:center; }
+        .finish-trigger-link { color:#003399; font-weight:bold; text-decoration:underline; cursor:pointer; font-size:12px; }
+        .finish-trigger-link:hover { color:#FF0000; }
+        .button-bar-right { display:flex; gap:3px; align-items:center; flex-wrap:wrap; }
+        .retro-control-btn { padding:5px 10px; font-size:11px; font-weight:bold; color:white; border:1px solid #2471A3; cursor:pointer; border-radius:3px; white-space:nowrap; }
+        .btn-system { background:linear-gradient(to bottom,#3498DB,#2980B9); }
+        .btn-navigational { background:linear-gradient(to bottom,#5DADE2,#2874A6); }
+        .btn-review { background:linear-gradient(to bottom,#F39C12,#D35400); border-color:#B03A2E; }
+        .btn-subject { background:linear-gradient(to bottom,#34495E,#2C3E50); border-color:#1A252F; }
+        .retro-control-btn:hover { opacity:0.9; }
+        .modal-screen { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:9999; }
+        .modal-body { background:white; border:3px double #0055A5; padding:25px; text-align:center; max-width:680px; width:95%; max-height:90vh; overflow-y:auto; }
+        .score-output { font-size:38px; font-weight:bold; color:#008000; margin:15px 0; font-family:monospace; }
+        .review-header { background:#003399; color:white; text-align:left; padding:6px 10px; font-size:14px; font-weight:bold; margin-top:15px; text-transform:uppercase; }
+        .review-box { border:1px solid #BDC3C7; text-align:left; padding:12px; margin-top:8px; font-size:13px; line-height:1.5; background:#FFF9F9; border-left:5px solid #FF0000; }
+        .review-box.box-correct { background:#F4FBF7; border-left:5px solid #2ECC71; }
+        .hidden { display:none !important; }
+        .katex-display { display:inline-block; margin:0; }
+        .katex { font-size:1.1em; }
+        /* Hide browser's native radio circle - we use label-based selection */
+        .option-radio-input { display:none; }
+        /* Style the custom radio indicator */
+        .option-row-item::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #A9CCE3;
+            margin-right: 12px;
+            flex-shrink: 0;
+            background: white;
+            transition: all 0.2s;
+        }
+        .option-row-item.selected::before {
+            border-color: #0055A5;
+            background: #0055A5;
+            box-shadow: inset 0 0 0 3px white;
+        }
     </style>
 </head>
 <body>
-<!-- ==================== LOGIN SCREEN ==================== -->
+
+<!-- ===== LOGIN SCREEN ===== -->
 <div class="login-screen" id="loginScreenView">
     <div class="login-container">
         <div class="status-badge"><div class="pulse-dot"></div><span>SYSTEM STATUS: OPERATIONAL</span></div>
-        <div class="login-header">NUST Computer Based Entry Test For Business and Social Sciences</div>
+        <div class="login-header">National University of Sciences & Technology</div>
         <div class="nust-logo-sub">Computer Based Entry Test Portal (CBNET)</div>
         <div class="form-group">
             <label>Candidate Roll Number / ID</label>
@@ -51,41 +166,77 @@
         </div>
         <button class="login-btn" onclick="authenticateUserLogin()">Login</button>
     </div>
-</div>
-
-<!-- ==================== INSTRUCTIONS SCREEN ==================== -->
-<div class="instructions-screen" id="instructionsScreenView" style="display:none;">
-    <div class="instructions-container">
-        <div class="status-badge"><div class="pulse-dot"></div><span>SYSTEM STATUS: OPERATIONAL</span></div>
-        <div class="login-header">NATIONAL UNIVERSITY OF SCIENCES & TECHNOLOGY</div>
-        <div class="nust-logo-sub">Computer Based Entry Test – Business & Social Sciences</div>
-        <div class="instructions-text">
-            <p><strong>Welcome to the NUST NET Business & Social Sciences mock test.</strong></p>
-            <ol>
-                <li>The test consists of 200 multiple‑choice questions divided into the following sections:<br>
-                    <ul>
-                        <li>Quantitative Mathematics – 100 questions (50%)</li>
-                        <li>English – 100 questions (50%)</li>
-                    </ul>
-                </li>
-                <li>Each correct answer awards 1 mark. There is no negative marking.</li>
-                <li>You have 3 hours (180 minutes) to complete the test. A countdown timer will be displayed on the test interface.</li>
-                <li>Use the navigation panel to move between questions. Mark questions for review by clicking the “Review” button.</li>
-                <li>Once you are satisfied with your answers, click the “FINISH” link at the bottom of the page to submit your responses.</li>
-                <li>After submission, you will see a detailed score summary and the correct answers.</li>
-            </ol>
-            <p>Good luck and give your best effort!</p>
-        </div>
-        <button class="login-btn" onclick="startExam()">Start Test</button>
+    <div class="instructions-box">
+        <b style="color:#FFD700;font-size:13px;">Important System Instructions:</b><br>
+        &bull; Total Test duration is exactly 180 minutes (200 MCQs).<br>
+        &bull; After login, select your field/stream to begin the test.<br>
+        &bull; Click <b>Save</b> after choosing an option to record your choice and advance.
     </div>
 </div>
 
-<!-- ==================== TEST INTERFACE ==================== -->
+<!-- ===== FIELD SELECTION SCREEN (hidden by default) ===== -->
+<div class="field-select-screen" id="fieldSelectScreenView">
+    <div class="field-select-container">
+        <div class="status-badge"><div class="pulse-dot"></div><span>CANDIDATE: <span id="fieldSelectCandidateId">NUST026</span></span></div>
+        <div class="login-header">Select Your Test Field / Stream</div>
+        <div class="nust-logo-sub" style="margin-bottom:15px;">Choose the appropriate category for assessment</div>
+        <div class="field-selector" id="fieldSelectorContainer">
+            <div class="field-card" onclick="selectField(this,'engineering')">
+                <input type="radio" name="fieldChoice" value="engineering">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Engineering</div>
+                    <div class="field-card-detail">HSSC Pre-Engg / Pre-Med* / ICS / equivalent</div>
+                    <div class="field-card-weightage">Mathematics 50% &middot; Physics 30% &middot; English 20%</div>
+                </div>
+                <div class="field-card-code">ENG</div>
+            </div>
+            <div class="field-card" onclick="selectField(this,'applied_sciences')">
+                <input type="radio" name="fieldChoice" value="applied_sciences">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Applied Sciences</div>
+                    <div class="field-card-detail">HSSC Pre-Medical group / equivalent</div>
+                    <div class="field-card-weightage">Biology 50% &middot; Chemistry 30% &middot; English 20%</div>
+                </div>
+                <div class="field-card-code">APS</div>
+            </div>
+            <div class="field-card" onclick="selectField(this,'business_studies')">
+                <input type="radio" name="fieldChoice" value="business_studies">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Business Studies &amp; Social Sciences</div>
+                    <div class="field-card-detail">HSSC with any combination / equivalent</div>
+                    <div class="field-card-weightage">Quantitative Mathematics 50% &middot; English 50%</div>
+                </div>
+                <div class="field-card-code">BUS</div>
+            </div>
+            <div class="field-card" onclick="selectField(this,'architecture')">
+                <input type="radio" name="fieldChoice" value="architecture">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Architecture / Industrial Design</div>
+                    <div class="field-card-detail">HSSC with Maths and Physics / equivalent</div>
+                    <div class="field-card-weightage">Design Aptitude 50% &middot; Mathematics 30% &middot; English 20%</div>
+                </div>
+                <div class="field-card-code">ARC</div>
+            </div>
+            <div class="field-card" onclick="selectField(this,'natural_sciences')">
+                <input type="radio" name="fieldChoice" value="natural_sciences">
+                <div class="field-card-content">
+                    <div class="field-card-title">NET-Natural Sciences</div>
+                    <div class="field-card-detail">HSSC / equivalent</div>
+                    <div class="field-card-weightage">Mathematics 50% &middot; English 50%</div>
+                </div>
+                <div class="field-card-code">NSC</div>
+            </div>
+        </div>
+        <button class="login-btn" onclick="startExam()">Start Assessment</button>
+        <button class="btn-back" onclick="goBackToLogin()">&larr; Back to Login</button>
+    </div>
+</div>
+
+<!-- ===== EXAM INTERFACE ===== -->
 <div class="exam-interface" id="examPortalView">
-    <!-- (Same as original – unchanged) -->
     <div class="test-table">
         <div class="top-header-row" id="currentSubjectHeader">MATHEMATICS</div>
-        <div class="stream-title" id="streamTitleBar">Business & Social Sciences Mock Portal</div>
+        <div class="stream-title" id="streamTitleBar">Engineering Stream Mock Portal</div>
         <div class="workspace-container">
             <div class="left-main-canvas">
                 <div class="question-meta-bar">
@@ -100,7 +251,7 @@
                 <div class="photo-box-frame">Your<br>Image<br>here</div>
                 <div style="font-size:11px;font-weight:bold;color:#0055A5;text-align:center;line-height:1.5;">
                     Candidate ID:<br><span style="color:#FF0000" id="displayCandidateId">NUST026</span><br>
-                    <span id="displayFieldCode" style="color:#003399;font-size:10px;">BUS</span>
+                    <span id="displayFieldCode" style="color:#003399;font-size:10px;">ENG</span>
                 </div>
             </div>
         </div>
@@ -121,46 +272,60 @@
     </div>
 </div>
 
-<!-- ==================== RESULT MODAL ==================== -->
+<!-- ===== RESULT MODAL ===== -->
 <div class="modal-screen" id="reportCardModalOverlay">
     <div class="modal-body">
         <h2 style="color:#0055A5;font-size:20px;">NUST Examination Result Summary</h2>
         <p style="margin-top:8px;font-size:13px;color:#555;">Scoring: +1 correct, 0 incorrect (no negative marking).</p>
         <div class="score-output" id="totalScoreTarget">0 / 200</div>
         <div id="subjectScoreBreakdownBox" style="text-align:left;background:#F8F9F9;padding:12px;font-size:13px;line-height:1.6;border:1px solid #BDC3C7;margin-bottom:15px;"></div>
+        
         <button class="login-btn" style="margin:0 auto 20px auto;display:block;width:150px;background:linear-gradient(135deg,#C0392B,#E74C3C);box-shadow:0 4px 12px rgba(192,57,43,0.3);" onclick="window.location.reload()">Exit Portal</button>
+        
         <div id="wrongQuestionsReviewPanel" style="text-align:left;margin-bottom:20px;"></div>
         <button class="login-btn" style="margin:0 auto;display:block;width:150px;" onclick="window.location.reload()">Restart Portal</button>
     </div>
 </div>
 
 <script>
-/* ==================== CONFIGURATION ==================== */
 const FIELD_CONFIG = {
+    'engineering': {
+        label: 'NET-Engineering', code: 'ENG', description: 'Engineering / Computing / ICS Stream', totalMCQs: 200,
+        blueprint: { mathematics: 100, physics: 60, english: 40 },
+        bankKeys: { mathematics: 'mathematics', physics: 'physics', english: 'english' }
+    },
+    'applied_sciences': {
+        label: 'NET-Applied Sciences', code: 'APS', description: 'Pre-Medical / Applied Biosciences Stream', totalMCQs: 200,
+        blueprint: { biology: 100, chemistry: 60, english: 40 },
+        bankKeys: { biology: 'biology', chemistry: 'chemistry', english: 'english' }
+    },
     'business_studies': {
-        label: 'NET-Business Studies & Social Sciences',
-        code: 'BUS',
-        description: 'Business / Social Sciences Stream',
-        totalMCQs: 200,
+        label: 'NET-Business Studies & Social Sciences', code: 'BUS', description: 'Business / Social Sciences Stream', totalMCQs: 200,
         blueprint: { quantitative_mathematics: 100, english: 100 },
         bankKeys: { quantitative_mathematics: 'quantitative_mathematics', english: 'english' }
+    },
+    'architecture': {
+        label: 'NET-Architecture', code: 'ARC', description: 'Architecture / Industrial Design Stream', totalMCQs: 200,
+        blueprint: { design_aptitude: 100, mathematics: 60, english: 40 },
+        bankKeys: { design_aptitude: 'design_aptitude', mathematics: 'mathematics', english: 'english' }
+    },
+    'natural_sciences': {
+        label: 'NET-Natural Sciences', code: 'NSC', description: 'Natural Sciences Stream', totalMCQs: 200,
+        blueprint: { mathematics: 100, english: 100 },
+        bankKeys: { mathematics: 'mathematics', english: 'english' }
     }
 };
 
 const SECTION_LABELS = {
+    mathematics: 'MATHEMATICS', physics: 'PHYSICS', english: 'ENGLISH',
+    biology: 'BIOLOGY', chemistry: 'CHEMISTRY',
     quantitative_mathematics: 'QUANTITATIVE MATHEMATICS',
-    english: 'ENGLISH'
+    design_aptitude: 'DESIGN APTITUDE'
 };
 
-/* ==================== GLOBAL STATE ==================== */
-let candidateId = '';
-let selectedField = 'business_studies';
-let activeTestSessionPool = [];
-let globalPointerIndex = 0;
-let totalSecondsRemaining = 180 * 60;
-let trackingIntervalEngine = null;
+let candidateId = '', selectedField = null, activeTestSessionPool = [], globalPointerIndex = 0;
+let totalSecondsRemaining = 180 * 60, trackingIntervalEngine = null;
 
-/* ==================== UTILITIES ==================== */
 function togglePasswordVisibility() {
     const p = document.getElementById('candidatePassInput');
     const b = p.nextElementSibling;
@@ -173,35 +338,149 @@ function authenticateUserLogin() {
     const pass = document.getElementById('candidatePassInput').value.trim();
     if (!candidateId || !pass) { alert('Both Roll Number and Password are required.'); return; }
     if (pass !== 'NUST2026') { alert('Access Denied: Invalid Access Password.'); return; }
-    document.getElementById('displayCandidateId').innerText = candidateId;
+    document.getElementById('fieldSelectCandidateId').innerText = candidateId;
     document.getElementById('loginScreenView').style.display = 'none';
-    document.getElementById('instructionsScreenView').style.display = 'flex';
+    document.getElementById('fieldSelectScreenView').style.display = 'flex';
 }
 
-/* ==================== INSTRUCTIONS PAGE ==================== */
+function goBackToLogin() {
+    document.getElementById('fieldSelectScreenView').style.display = 'none';
+    document.getElementById('loginScreenView').style.display = 'flex';
+}
+
+function selectField(el, val) {
+    document.querySelectorAll('.field-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.field-card input').forEach(r => r.checked = false);
+    el.classList.add('selected');
+    el.querySelector('input').checked = true;
+    selectedField = val;
+}
+
+function wrapMathEnvironments(text) {
+    const envs = [
+        'matrix', 'pmatrix', 'bmatrix', 'Bmatrix', 'vmatrix', 'Vmatrix',
+        'array', 'cases', 'dcases', 'rcases', 'drcases',
+        'aligned', 'gathered', 'split',
+        'smallmatrix', 'subarray'
+    ];
+    let result = text;
+    for (const env of envs) {
+        const regex = new RegExp(
+            '(?<!\\$|\\\\\\()' +
+            '(\\\\begin\\{' + env + '\\})' +
+            '([\\s\\S]*?)' +
+            '(\\\\end\\{' + env + '\\})' +
+            '(?!\\$|\\\\\\))',
+            'g'
+        );
+        result = result.replace(regex, '$$$1$2$3$$');
+    }
+    const specialEnvs = ['align', 'equation', 'gather', 'CD', 'alignat', 'flalign', 'multline'];
+    for (const env of specialEnvs) {
+        const regex = new RegExp(
+            '(?<!\\$|\\\\\\()' +
+            '(\\\\begin\\{' + env + '\\})' +
+            '([\\s\\S]*?)' +
+            '(\\\\end\\{' + env + '\\})' +
+            '(?!\\$|\\\\\\))',
+            'g'
+        );
+        result = result.replace(regex, '$$$1$2$3$$');
+    }
+    return result;
+}
+
+function renderMathInElementSafe(element) {
+    if (typeof renderMathInElement !== 'function') return;
+    if (element.innerHTML) {
+        element.innerHTML = wrapMathEnvironments(element.innerHTML);
+    }
+    try {
+        renderMathInElement(element, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "\\[", right: "\\]", display: true},
+                {left: "\\begin{equation}", right: "\\end{equation}", display: true},
+                {left: "\\begin{align}", right: "\\end{align}", display: true},
+                {left: "\\begin{alignat}", right: "\\end{alignat}", display: true},
+                {left: "\\begin{gather}", right: "\\end{gather}", display: true},
+                {left: "\\begin{CD}", right: "\\end{CD}", display: true},
+                {left: "\\begin{flalign}", right: "\\end{flalign}", display: true},
+                {left: "\\begin{multline}", right: "\\end{multline}", display: true}
+            ],
+            throwOnError: false,
+            errorColor: '#CC0000'
+        });
+    } catch(e) {
+        console.warn('KaTeX rendering error:', e);
+    }
+}
+
 function startExam() {
+    if (!selectedField) { alert('Please select your Field / Stream.'); return; }
     const cfg = FIELD_CONFIG[selectedField];
-    const bankData = QUESTION_BANK[selectedField];
-    if (!bankData) { alert('Question bank missing for Business stream.'); return; }
+    if (typeof QUESTION_BANK === 'undefined') { alert('questions.js missing or corrupted.'); return; }
+    if (!QUESTION_BANK[selectedField]) { alert('No question data for this field in questions.js'); return; }
+    
+    document.getElementById('displayCandidateId').innerText = candidateId;
+    document.getElementById('displayFieldCode').innerText = cfg.code;
+    document.getElementById('streamTitleBar').innerText = cfg.description + ' Mock Portal';
+    document.getElementById('fieldSelectScreenView').style.display = 'none';
+    document.getElementById('examPortalView').style.display = 'block';
+    
+    buildSectionButtons();
+    launchTestEngine();
+}
 
-    // Build question pool
+function buildSectionButtons() {
+    const container = document.getElementById('sectionButtonsContainer');
+    const reviewBtn = container.querySelector('.btn-review');
+    let html = '';
+    const cfg = FIELD_CONFIG[selectedField];
+    for (const sec of Object.keys(cfg.blueprint)) {
+        const lbl = (SECTION_LABELS[sec] || sec).substring(0, 4);
+        html += `<button class="retro-control-btn btn-subject" onclick="switchSubjectCluster('${sec}')">${lbl}</button>`;
+    }
+    reviewBtn.insertAdjacentHTML('afterend', html);
+}
+
+function pullRandomPool(src, limit) {
+    if (!src || !src.length) return [];
+    let c = [...src].sort(() => 0.5 - Math.random());
+    while (c.length < limit) c = c.concat(c);
+    return c.slice(0, limit).map(i => ({ ...i, chosenIndexValue: null, isFlagged: false, isSavedPermanently: false }));
+}
+
+function launchTestEngine() {
     activeTestSessionPool = [];
+    const cfg = FIELD_CONFIG[selectedField];
+    const fieldData = QUESTION_BANK[selectedField];
     const bpOrder = Object.keys(cfg.blueprint);
-    bpOrder.forEach(sec => {
+    
+    for (const sec of bpOrder) {
         const bankKey = cfg.bankKeys[sec];
-        const qs = pullRandomPool(bankData[bankKey], cfg.blueprint[sec]);
-        qs.forEach((q,i)=>{ q.innerIndexValue=i+1; q.sectionKeyName=sec; });
-        activeTestSessionPool = activeTestSessionPool.concat(qs);
+        if (fieldData[bankKey]) {
+            const qs = pullRandomPool(fieldData[bankKey], cfg.blueprint[sec]);
+            let cnt = 1;
+            qs.forEach(i => { i.innerIndexValue = cnt++; i.sectionKeyName = sec; });
+            activeTestSessionPool = activeTestSessionPool.concat(qs);
+        }
+    }
+    
+    activeTestSessionPool.sort((a, b) => {
+        const oa = bpOrder.indexOf(a.sectionKeyName), ob = bpOrder.indexOf(b.sectionKeyName);
+        return oa !== ob ? oa - ob : a.innerIndexValue - b.innerIndexValue;
     });
-
-    // Shuffle within sections
-    activeTestSessionPool.sort((a,b)=>{
-        const oa = bpOrder.indexOf(a.sectionKeyName);
-        const ob = bpOrder.indexOf(b.sectionKeyName);
-        return oa!==ob?oa-ob:a.innerIndexValue-b.innerIndexValue;
+    
+    const counts = {};
+    activeTestSessionPool.forEach(i => {
+        if (!counts[i.sectionKeyName]) counts[i.sectionKeyName] = 0;
+        counts[i.sectionKeyName]++;
+        i.innerIndexValue = counts[i.sectionKeyName];
     });
-
-    // Reset counters and timer
+    
     globalPointerIndex = 0;
     totalSecondsRemaining = 180 * 60;
     updateTimerDisplay();
@@ -210,140 +489,186 @@ function startExam() {
         if (totalSecondsRemaining <= 0) { clearInterval(trackingIntervalEngine); compileExamResults(); }
         else { totalSecondsRemaining--; updateTimerDisplay(); }
     }, 1000);
-
-    // Show test interface
-    document.getElementById('instructionsScreenView').style.display = 'none';
-    document.getElementById('examPortalView').style.display = 'block';
     refreshWorkspace();
     generateNavMatrix();
 }
 
-/* ==================== QUESTION POOL HELPERS ==================== */
-function pullRandomPool(src, limit) {
-    if (!src || !src.length) return [];
-    let pool = [...src].sort(()=>0.5-Math.random());
-    while(pool.length<limit) pool=pool.concat(pool);
-    return pool.slice(0,limit).map(i=>({...i,chosenIndexValue:null,isFlagged:false,isSavedPermanently:false}));
-}
-
-/* ==================== UI UPDATE FUNCTIONS ==================== */
 function updateTimerDisplay() {
-    const h=Math.floor(totalSecondsRemaining/3600);
-    const m=Math.floor((totalSecondsRemaining%3600)/60);
-    const s=totalSecondsRemaining%60;
-    document.getElementById('timerClockMinutes').innerText=
-        String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    const h = Math.floor(totalSecondsRemaining / 3600);
+    const m = Math.floor((totalSecondsRemaining % 3600) / 60);
+    const s = totalSecondsRemaining % 60;
+    document.getElementById('timerClockMinutes').innerText =
+        String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
 }
 
 function refreshWorkspace() {
-    if (!activeTestSessionPool.length) return;
+    if (!activeTestSessionPool || activeTestSessionPool.length === 0) return;
+    
     const q = activeTestSessionPool[globalPointerIndex];
+    const label = SECTION_LABELS[q.sectionKeyName] || q.sectionKeyName.toUpperCase();
     const cfg = FIELD_CONFIG[selectedField];
-    const label = SECTION_LABELS[q.sectionKeyName]||q.sectionKeyName.toUpperCase();
-    document.getElementById('currentSubjectHeader').innerHTML=label;
-    document.getElementById('questionNumTracker').innerHTML=`Question No: ${q.innerIndexValue} of ${cfg.blueprint[q.sectionKeyName]} (${q.sectionKeyName.toUpperCase()})`;
 
-    const qBox=document.getElementById('questionTextBox');
-    let html='';
-    if (q.passage) html+=`<div class="passage-container"><div class="passage-label">Read the following passage carefully:</div>${q.passage}</div>`;
-    html+=`<div class="question-text">${q.q}</div>`;
-    if (q.d) html+=`<img class="question-diagram" src="${q.d}" alt="Diagram">`;
-    qBox.innerHTML=html;
+    document.getElementById('currentSubjectHeader').innerHTML = label;
+    document.getElementById('questionNumTracker').innerHTML = `Question No: ${q.innerIndexValue} of ${cfg.blueprint[q.sectionKeyName]} (${q.sectionKeyName.toUpperCase()})`;
+
+    const qBox = document.getElementById('questionTextBox');
+    let html = '';
+
+    if (q.passage) {
+        html += `<div class="passage-container"><div class="passage-label">Read the following passage carefully:</div>${q.passage}</div>`;
+    }
+
+    html += `<div class="question-text">${q.q}</div>`;
+
+   if (q.d) {
+    html += `<img class="question-diagram" src="${q.d}" alt="Diagram" 
+             style="max-width: 100%; height: auto; display: block; margin: 10px 0;">`;
+}
+
+    qBox.innerHTML = html;
     renderMathInElementSafe(qBox);
 
-    const cont=document.getElementById('optionsRadioGroup');
-    cont.innerHTML='';
-    q.a.forEach((opt,idx)=>{
-        const row=document.createElement('div');
-        row.className='option-row-item'+(q.chosenIndexValue===idx?' selected':'');
-        row.dataset.optIndex=idx;
-        const span=document.createElement('span');
-        span.className='option-text';
-        span.innerHTML=opt;
+    // Build options with clickable labels
+    const cont = document.getElementById('optionsRadioGroup');
+    cont.innerHTML = '';
+    
+    q.a.forEach((opt, idx) => {
+        const row = document.createElement('div');
+        row.className = 'option-row-item' + (q.chosenIndexValue === idx ? ' selected' : '');
+        row.setAttribute('data-opt-index', idx);
+        
+        const span = document.createElement('span');
+        span.className = 'option-text';
+        span.innerHTML = opt;
+        
         row.appendChild(span);
         cont.appendChild(row);
     });
+
+    // Render KaTeX in options
     renderMathInElementSafe(cont);
-    cont.querySelectorAll('.option-row-item').forEach(row=>{
-        row.addEventListener('click',()=>{ q.chosenIndexValue=parseInt(row.dataset.optIndex); refreshWorkspace(); });
+
+    // Simple click handler - just update data and refresh
+    cont.querySelectorAll('.option-row-item').forEach(row => {
+        row.addEventListener('click', function() {
+            const idx = parseInt(this.getAttribute('data-opt-index'));
+            q.chosenIndexValue = idx;
+            refreshWorkspace();
+        });
     });
 
-    document.querySelectorAll('.nav-square-btn').forEach(b=>{
+    // Update navigation highlights
+    document.querySelectorAll('.nav-square-btn').forEach(b => {
         b.classList.remove('active-focus');
-        if (parseInt(b.dataset.sid,10)===globalPointerIndex) b.classList.add('active-focus');
+        if (parseInt(b.getAttribute('data-sid'), 10) === globalPointerIndex) b.classList.add('active-focus');
     });
 }
 
 function generateNavMatrix() {
-    const grid=document.getElementById('navButtonMatrixGrid');
-    grid.innerHTML='';
-    const cfg=FIELD_CONFIG[selectedField];
-    Object.keys(cfg.blueprint).forEach(sec=>{
-        const label=SECTION_LABELS[sec]||sec.toUpperCase();
-        const sectionItems=activeTestSessionPool.filter(i=>i.sectionKeyName===sec);
-        if (!sectionItems.length) return;
-        const cols=Math.min(cfg.blueprint[sec],20);
-        let html=`<div class="nav-section-label"><span>${label}</span></div>`;
-        html+=`<div class="nav-sub-grid" style="grid-template-columns:repeat(${cols},1fr);">`;
-        sectionItems.forEach(i=>{
-            const idx=activeTestSessionPool.indexOf(i);
-            let cls='nav-square-btn';
-            if (i.isSavedPermanently) cls+=' filled';
-            if (i.isFlagged) cls+=' flagged-review';
-            if (idx===globalPointerIndex) cls+=' active-focus';
-            html+=`<div class="${cls}" data-sid="${idx}" onclick="navigateTo(${idx})">${i.innerIndexValue}</div>`;
+    const grid = document.getElementById('navButtonMatrixGrid');
+    grid.innerHTML = '';
+    if (!activeTestSessionPool.length) return;
+    const cfg = FIELD_CONFIG[selectedField];
+    for (const sec of Object.keys(cfg.blueprint)) {
+        const label = SECTION_LABELS[sec] || sec.toUpperCase();
+        const sq = activeTestSessionPool.filter(i => i.sectionKeyName === sec);
+        if (!sq.length) continue;
+        const cols = Math.min(cfg.blueprint[sec], 20);
+        let html = `<div class="nav-section-label"><span>${label}</span></div>`;
+        html += `<div class="nav-sub-grid" style="grid-template-columns:repeat(${cols},1fr);">`;
+        sq.forEach(i => {
+            const gIdx = activeTestSessionPool.indexOf(i);
+            let cls = 'nav-square-btn';
+            if (i.isSavedPermanently) cls += ' filled';
+            if (i.isFlagged) cls += ' flagged-review';
+            if (gIdx === globalPointerIndex) cls += ' active-focus';
+            html += `<div class="${cls}" data-sid="${gIdx}" onclick="navigateTo(${gIdx})">${i.innerIndexValue}</div>`;
         });
-        html+='</div>';
-        grid.innerHTML+=html;
-    });
+        html += '</div>';
+        grid.innerHTML += html;
+    }
 }
 
-function navigateTo(idx){ if(idx>=0&&idx<activeTestSessionPool.length){ globalPointerIndex=idx; refreshWorkspace(); generateNavMatrix(); } }
+function navigateTo(gIdx) {
+    if (gIdx >= 0 && gIdx < activeTestSessionPool.length) {
+        globalPointerIndex = gIdx;
+        refreshWorkspace();
+        generateNavMatrix();
+    }
+}
 
-function saveAnswerState(){ const q=activeTestSessionPool[globalPointerIndex]; if(q.chosenIndexValue!==null) q.isSavedPermanently=true; generateNavMatrix(); shiftActiveIndex(1); }
+function saveAnswerState() {
+    const q = activeTestSessionPool[globalPointerIndex];
+    if (q.chosenIndexValue !== null) q.isSavedPermanently = true;
+    generateNavMatrix();
+    shiftActiveIndex(1);
+}
 
-function flagQuestionToggle(){ activeTestSessionPool[globalPointerIndex].isFlagged=!activeTestSessionPool[globalPointerIndex].isFlagged; generateNavMatrix(); }
+function flagQuestionToggle() {
+    activeTestSessionPool[globalPointerIndex].isFlagged = !activeTestSessionPool[globalPointerIndex].isFlagged;
+    generateNavMatrix();
+}
 
-function shiftActiveIndex(step){ const t=globalPointerIndex+step; if(t>=0&&t<activeTestSessionPool.length){ globalPointerIndex=t; refreshWorkspace(); generateNavMatrix(); } }
+function shiftActiveIndex(step) {
+    const t = globalPointerIndex + step;
+    if (t >= 0 && t < activeTestSessionPool.length) {
+        globalPointerIndex = t;
+        refreshWorkspace();
+        generateNavMatrix();
+    }
+}
 
-function triggerSubmitConfirmation(){ if(confirm('Do you want to finalise and submit your assessment?')) compileExamResults(); }
+function switchSubjectCluster(sec) {
+    const idx = activeTestSessionPool.findIndex(i => i.sectionKeyName === sec);
+    if (idx !== -1) { globalPointerIndex = idx; refreshWorkspace(); generateNavMatrix(); }
+}
 
-function compileExamResults(){
-    clearInterval(trackingIntervalEngine);
-    let score=0;
-    const cfg=FIELD_CONFIG[selectedField];
-    const stats={quantitative_mathematics:0,english:0};
-    const logs={quantitative_mathematics:'',english:''};
-    activeTestSessionPool.forEach(i=>{
-        const correct=i.chosenIndexValue!==null&&i.chosenIndexValue===i.c;
-        if(correct){ score++; stats[i.sectionKeyName]++; }
-        const chosen=i.chosenIndexValue!==null?i.a[i.chosenIndexValue]:'Unattempted';
-        const right=i.a[i.c];
-        const exp=i.e||'No explanation provided.';
-        const qtxt=i.q;
-        if(correct){
-            logs[i.sectionKeyName]+=`<div class="review-box box-correct"><p><strong>Q${i.innerIndexValue}:</strong> ${qtxt}</p><p style="color:#2ECC71;font-weight:700;margin-top:4px;">&#128994; Correct</p></div>`;
-        }else{
-            logs[i.sectionKeyName]+=`<div class="review-box"><p><strong>Q${i.innerIndexValue}:</strong> ${qtxt}</p><p style="color:#C0392B;font-weight:600;margin-top:4px;">&#10060; Your: ${chosen}</p><p style="color:#27AE60;font-weight:600;">&#9989; Correct: ${right}</p><p style="color:#555;margin-top:6px;font-style:italic;background:#F2F4F4;padding:6px;border-left:3px solid #0055A5;"><strong>Explanation:</strong> ${exp}</p></div>`;
+function triggerSubmitConfirmation() {
+    if (confirm('Do you want to finalise and submit your assessment?')) compileExamResults();
+}
+
+function compileExamResults() {
+    if (trackingIntervalEngine) clearInterval(trackingIntervalEngine);
+    let score = 0;
+    const cfg = FIELD_CONFIG[selectedField];
+    const stats = {};
+    for (const k of Object.keys(cfg.blueprint)) stats[k] = 0;
+    let reviewHTML = `<h3 style="color:#003399;margin-top:20px;font-size:16px;text-align:center;">Comprehensive Test Evaluation Log</h3>`;
+    const logs = {};
+    for (const k of Object.keys(cfg.blueprint)) logs[k] = '';
+    
+    activeTestSessionPool.forEach(i => {
+        const correct = i.chosenIndexValue !== null && i.chosenIndexValue === i.c;
+        if (correct) { score++; stats[i.sectionKeyName]++; }
+        const chosen = i.chosenIndexValue !== null ? i.a[i.chosenIndexValue] : 'Unattempted';
+        const right = i.a[i.c];
+        const exp = i.e || 'No explanation provided.';
+        const dispQ = i.q;
+        if (correct) {
+            logs[i.sectionKeyName] += `<div class="review-box box-correct"><p><strong>Q${i.innerIndexValue}:</strong> ${dispQ}</p><p style="color:#2ECC71;font-weight:700;margin-top:4px;">&#128994; Correct</p></div>`;
+        } else {
+            logs[i.sectionKeyName] += `<div class="review-box"><p><strong>Q${i.innerIndexValue}:</strong> ${dispQ}</p><p style="color:#C0392B;font-weight:600;margin-top:4px;">&#10060; Your: ${chosen}</p><p style="color:#27AE60;font-weight:600;">&#9989; Correct: ${right}</p><p style="color:#555;margin-top:6px;font-style:italic;background:#F2F4F4;padding:6px;border-left:3px solid #0055A5;"><strong>Explanation:</strong> ${exp}</p></div>`;
         }
     });
-    document.getElementById('totalScoreTarget').innerText=`${score} / ${cfg.totalMCQs}`;
-    let bd=`<strong>Subject Breakdown (${cfg.label}):</strong><br>`;
-    Object.keys(stats).forEach(k=>bd+=`• ${SECTION_LABELS[k]||k.toUpperCase()}: ${stats[k]} / ${cfg.blueprint[k]}<br>`);
-    document.getElementById('subjectScoreBreakdownBox').innerHTML=bd;
-    let reviewHTML=`<h3 style="color:#003399;margin-top:20px;font-size:16px;text-align:center;">Comprehensive Test Evaluation Log</h3>`;
-    Object.keys(logs).forEach(k=>{ reviewHTML+=`<div class="review-header">${SECTION_LABELS[k]||k.toUpperCase()} Record</div>`+ (logs[k]||'<p style="padding:10px;color:#888;">No questions in this section.</p>');});
-    document.getElementById('wrongQuestionsReviewPanel').innerHTML=reviewHTML;
+    
+    for (const k of Object.keys(logs)) {
+        const lbl = SECTION_LABELS[k] || k.toUpperCase();
+        reviewHTML += `<div class="review-header">${lbl} Record</div>` + (logs[k] || '<p style="padding:10px;color:#888;">No questions in this section.</p>');
+    }
+    
+    document.getElementById('totalScoreTarget').innerText = `${score} / ${cfg.totalMCQs}`;
+    let bd = `<strong>Subject Breakdown (${cfg.label}):</strong><br>`;
+    for (const k of Object.keys(stats)) {
+        bd += `&bull; ${SECTION_LABELS[k] || k.toUpperCase()}: ${stats[k]} / ${cfg.blueprint[k]}<br>`;
+    }
+    document.getElementById('subjectScoreBreakdownBox').innerHTML = bd;
+    
+    document.getElementById('wrongQuestionsReviewPanel').innerHTML = reviewHTML;
     renderMathInElementSafe(document.getElementById('wrongQuestionsReviewPanel'));
     renderMathInElementSafe(document.getElementById('subjectScoreBreakdownBox'));
-    document.getElementById('reportCardModalOverlay').style.display='flex';
+    
+    document.getElementById('reportCardModalOverlay').style.display = 'flex';
 }
-
-/* ==================== MATH RENDERING HELPERS ==================== */
-function wrapMathEnvironments(text){ /* same as original – omitted for brevity */ return text; }
-function renderMathInElementSafe(el){ /* same as original – omitted for brevity */ }
-
-/* ==================== END OF SCRIPT ==================== */
 </script>
 </body>
 </html>
