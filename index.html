@@ -399,17 +399,20 @@ function renderMathInElementSafe(element) {
 }
 
 function startExam() {
-    if (!selectedField) { alert('Please select your Field / Stream.'); return; }
-    const cfg = FIELD_CONFIG[selectedField];
-    if (typeof QUESTION_BANK === 'undefined') { alert('questions.js missing or corrupted.'); return; }
-    if (!QUESTION_BANK[selectedField]) { alert('No question data for this field in questions.js'); return; }
-    
+
+    selectedField = 'business_studies';
+
+    const cfg = FIELD_CONFIG.business_studies;
+
     document.getElementById('displayCandidateId').innerText = candidateId;
-    document.getElementById('displayFieldCode').innerText = cfg.code;
-    document.getElementById('streamTitleBar').innerText = cfg.description + ' Mock Portal';
-    document.getElementById('fieldSelectScreenView').style.display = 'none';
+    document.getElementById('displayFieldCode').innerText = 'BUS';
+
+    document.getElementById('streamTitleBar').innerText =
+        'NET Business & Social Sciences';
+
+    document.getElementById('instructionScreenView').style.display = 'none';
     document.getElementById('examPortalView').style.display = 'block';
-    
+
     buildSectionButtons();
     launchTestEngine();
 }
