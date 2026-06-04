@@ -17,22 +17,34 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         body { background-color: #FFFFFF; user-select: none; }
-    .login-screen, .field-select-screen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        /* Dark overlay + Image */
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('business.png');
-        background-size: cover;
-        background-position: center bottom;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+    .login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('business.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+    .field-select-screen {
+    display: none; /* Changed from flex to none */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('business.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
         @keyframes gradientBG { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
         .login-container, .field-select-container {
-        background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+        background: rgba(255, 255, 255, 0.85); /* Slight transparency */
         backdrop-filter: blur(10px);          /* Frosted glass effect */
         padding: 35px;
         border-radius: 20px;                  /* Softer, modern edges */
