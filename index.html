@@ -437,8 +437,7 @@ function pullRandomPool(src, limit) {
 
 function launchTestEngine() {
     activeTestSessionPool = [];
-    const cfg = FIELD_CONFIG[selectedField];
-    const fieldData = QUESTION_BANK[selectedField];
+    const fieldData = QUESTION_BANK[instructionsScreenView];
     const bpOrder = Object.keys(cfg.blueprint);
     
     for (const sec of bpOrder) {
