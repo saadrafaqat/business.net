@@ -233,7 +233,7 @@
 <div class="exam-interface" id="examPortalView">
     <div class="test-table">
         <div class="top-header-row" id="currentSubjectHeader">MATHEMATICS</div>
-        <div class="stream-title" id="streamTitleBar">Engineering Stream Mock Portal</div>
+        <div class="stream-title" id="streamTitleBar">NET Business & Social Sciences</div>
         <div class="workspace-container">
             <div class="left-main-canvas">
                 <div class="question-meta-bar">
@@ -248,7 +248,7 @@
                 <div class="photo-box-frame">Your<br>Image<br>here</div>
                 <div style="font-size:11px;font-weight:bold;color:#0055A5;text-align:center;line-height:1.5;">
                     Candidate ID:<br><span style="color:#FF0000" id="displayCandidateId">NUST026</span><br>
-                    <span id="displayFieldCode" style="color:#003399;font-size:10px;">ENG</span>
+                    <span id="displayFieldCode" style="color:#003399;font-size:10px;">BUS</span>
                 </div>
             </div>
         </div>
@@ -397,6 +397,11 @@ function renderMathInElementSafe(element) {
         console.warn('KaTeX rendering error:', e);
     }
 }
+    
+const SECTION_LABELS = {
+    quantitative_mathematics: "QUANTITATIVE MATHEMATICS",
+    english: "ENGLISH"
+};    
 
 function startExam() {
 
@@ -422,16 +427,25 @@ function startExam() {
 }
 
 function buildSectionButtons() {
+    const cfg = FIELD_CONFIG[selectedField];
+
     const container = document.getElementById('sectionButtonsContainer');
     const reviewBtn = container.querySelector('.btn-review');
+
     let html = '';
+
     for (const sec of Object.keys(cfg.blueprint)) {
-        const lbl = (SECTION_LABELS[sec] || sec).substring(0, 4);
-        html += `<button class="retro-control-btn btn-subject" onclick="switchSubjectCluster('${sec}')">${lbl}</button>`;
+        const lbl = sec.substring(0,4).toUpperCase();
+
+        html += `
+        <button class="retro-control-btn btn-subject"
+            onclick="switchSubjectCluster('${sec}')">
+            ${lbl}
+        </button>`;
     }
+
     reviewBtn.insertAdjacentHTML('afterend', html);
 }
-
 function pullRandomPool(src, limit) {
     if (!src || !src.length) return [];
     let c = [...src].sort(() => 0.5 - Math.random());
@@ -440,8 +454,9 @@ function pullRandomPool(src, limit) {
 }
 
 function launchTestEngine() {
+    const cfg = FIELD_CONFIG[selectedField];
     activeTestSessionPool = [];
-    const fieldData = QUESTION_BANK[instructionsScreenView];
+    const fieldData = QUESTION_BANK.business_studies;
     const bpOrder = Object.keys(cfg.blueprint);
     
     for (const sec of bpOrder) {
